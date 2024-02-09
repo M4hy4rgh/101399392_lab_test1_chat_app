@@ -9,7 +9,7 @@ export default function Chat() {
     const { groupId } = useParams(); 
     const backend = "http://localhost:8089";
     const [messages, setMessages] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [newMessage, setNewMessage] = useState("");
     const [typing, setTyping] = useState("");
     const [groupData, setGroupData] = useState({});
@@ -28,8 +28,6 @@ export default function Chat() {
             });
 
             const fetchData = async () => {
-                setLoading(true);
-
                 try {
                     const response = await axios.get(`${backend}/group/${groupId}/messages`, {
                         headers: {
@@ -40,11 +38,7 @@ export default function Chat() {
 
                     if (response.status === 200) {
                         const data = response.data;
-                        // console.log("Messages: ", data);
-                        const mymsg = data.map((msg) => msg.message);
-                        console.log("Messages: ", mymsg);
-                        //  sender = data.map((constmsg) => msg.sender.username);
-                        // console.log("Sender: ", sender);
+                        const mymsg = data.map((msg) => { return { message: msg.message, sender: msg.sender.username } });
                         setMessages(mymsg);
                     } else {
                         console.error("Failed to fetch messages");
@@ -109,13 +103,14 @@ export default function Chat() {
 
         const token = localStorage.getItem("token"); // Retrieve the token from localStorage
         const userId = localStorage.getItem("id"); // Retrieve the userId from localStorage
+        const username = localStorage.getItem("username"); // Retrieve the username from localStorage
     
 
         if (token) { // Check if the token exists
             try {
                 console.log("Sending message:", newMessage);
                 socket.current.emit("chatMessage",
-                    { message: newMessage, sender: userId, group: groupId }, groupData.data.name);
+                    { message: newMessage, sender: userId, group: groupId }, groupData.data.name, username);
                 setNewMessage("");
                 setTyping("");
 
@@ -190,9 +185,18 @@ export default function Chat() {
                         <div className="flex flex-col justify-center items-center mt-4 space-y-4 overflow-y-auto">
                             <div className="flex-1 bg-slate-200 min-h-[250px] max-h-[250px] w-9/12 overflow-auto scroll-smooth 
                         rounded-lg text-black border px-3 py-2">
-                                {messages.map((message, index) => ( 
-                                    <div key={index}>{message?.message ?? message}</div> 
-                                ))} 
+                                {loading ? (
+                                    <div className="text-gray-700 text-center">Loading messages...</div>
+                                ) : messages.length > 0 ? (
+                                    messages.map((msg, index) => (
+                                        <div key={index} className="flex items-center justify-start gap-2">
+                                            <div className="text-gray-700 text-sm font-semibold">{msg?.username ?? msg.sender}:</div>
+                                            <div className="text-gray-700 text-sm">{msg.message}</div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="text-gray-200 text-center">No messages yet</div>
+                                )}
                             
                             </div>
                             <div className="w-full">
@@ -205,7 +209,7 @@ export default function Chat() {
                                         className="w-6/12 h-10 pl-3  text-base placeholder-gray-400 text-black border rounded-lg focus:shadow-outline focus:outline-none"
                                         placeholder="Type here ...."
                                     />
-                                    <button type="button" onClick={handleSendMessage} name="submit" className="text-base px-4 py-2 rounded-lg bg-gray-300/60 text-gray-200
+                                    <button type="submit" onClick={handleSendMessage} name="submit" className="text-base px-4 py-2 rounded-lg bg-gray-300/60 text-gray-200
                                     hover:text-gray-900/70 hover:bg-gray-500 focus:outline-none focus:text-gray-900/70 
                                     focus:shadow-outline transition duration-200 ease-in-out
                                 ">Send</button>

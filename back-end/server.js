@@ -76,7 +76,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('typing', ({ room, username }) => {
-    io.to(room).emit('type', `${username} is typing...`);
+    io.to(room).emit('type', `${username} is typing...`)
   })
 
   socket.on('stopTyping', ({ room }) => {
@@ -96,11 +96,11 @@ io.on('connection', (socket) => {
   });
 
 
-  socket.on('chatMessage', (data, groupName) => {
+  socket.on('chatMessage', (data, groupName, username) => {
     console.log("my server " + groupName);
     const newMessage = new GroupMessage(data);
     newMessage.save();
-    io.to(groupName).emit('message', data);
+    io.to(groupName).emit('message', {...data, username});
   });
 
 });
