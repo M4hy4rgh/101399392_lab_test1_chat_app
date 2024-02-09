@@ -42,6 +42,9 @@ export default function Chat() {
                         const data = response.data;
                         // console.log("Messages: ", data);
                         const mymsg = data.map((msg) => msg.message);
+                        console.log("Messages: ", mymsg);
+                        //  sender = data.map((constmsg) => msg.sender.username);
+                        // console.log("Sender: ", sender);
                         setMessages(mymsg);
                     } else {
                         console.error("Failed to fetch messages");

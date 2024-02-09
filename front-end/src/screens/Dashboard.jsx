@@ -97,7 +97,7 @@ export default function Dashboard() {
                         </div>
 
                         <div className="flex w-full flex-row justify-center items-center gap-8">
-                            <div className="w-6/12 border-r-2 pr-6 max-h-[450px] overflow-auto sm:flex sm:flex-col sm:justify-center sm:items-center lg:w-4/12">
+                            <div className="w-6/12 border-r-2 pr-6 max-h-[450px] overflow-auto sm:flex sm:flex-col sm:justify-center sm:items-center lg:w-5/12">
                                 {userlist.map((user) => (
                                     <div
                                         key={user._id}
