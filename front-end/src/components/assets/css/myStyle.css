@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Bree+Serif&family=Dancing+Script:wght@400;500;600;700&family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300;1,400&family=Roboto+Slab:wght@400;500;600;700&family=Sen:wght@400;700;800&family=Slabo+27px&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* background-color: #f2f2f2; */
+    color: #cccccc;
+    font-family: 'Amaranth', serif;
+}
+
+.container {
+    background: rgba(241, 242, 181, 1);
+    background: -moz-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(19, 80, 88, 1) 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(100%, rgba(19, 80, 88, 1)));
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(19, 80, 88, 1) 100%);
+    background: -o-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(19, 80, 88, 1) 100%);
+    background: -ms-radial-gradient(center, ellipse cover, rgba(255, 255, 255, 1) 0%, rgba(19, 80, 88, 1) 100%);
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 1) 0%, rgba(19, 80, 88, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f1f2b5', endColorstr='#135058', GradientType=1);
+}
+
+.f-r-r-con .f-r-con a {
+    color: #ccc;
+    text-decoration: none;
+}
+
+.f-r-r-con .f-r-con #resLink:hover, .f-r-r-con .f-r-con #resLink:focus, .f-r-r-con .f-r-con #regLink:hover, .f-r-r-con .f-r-con #regLink:focus {
+    color: #fff;
+    text-decoration: underline #4a525f;
+    text-underline-offset: 6px;
+    transform: scale(1.1);
+}
+
+.inner-container .input-con #loginButton {
+    -webkit-transition: all ease 0.8s;
+    -moz-transition: all ease 0.8s;
+    transition: all ease 0.8s;
+}
+
+.myForm .input-con input:focus + #user-icon, .myForm .input-con input:focus + #pass-icon {
+    color: #fff;
+    border: 0;
+    box-shadow: 0 0 100px 0 #7692A7;
+}
+
+.myForm .input-con .input-lg:focus + #user-icon, .myForm .input-con .input-lg:focus + #pass-icon {
+    animation: scale .7s infinite;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 2px;
+    text-underline-offset: 5px;
+}
+
+.myForm .check label,
+.myForm .check a {
+    color: #ddd;
+}
+
+.myForm .check label:hover,
+.myForm .check #rememberMe:hover + label {
+    color: #fff;
+}
+
+.myForm .check input:checked + label {
+    color: #fff;
+}
+
+.container .inner-container .social-media-container .social-media:focus{
+    color: white;
+    border-bottom: 1px solid #FFFFFF;
+    border-bottom-width: 2px;
+}
+
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    75% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(90deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(270deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

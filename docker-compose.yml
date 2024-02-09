@@ -1,0 +1,56 @@
+version: "3.8"
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mahyargh
+      MONGO_INITDB_ROOT_PASSWORD: mahyargh
+    volumes:
+      - ./data:/data/db
+      - ./init/mongo/docker-entrypoint-initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    container_name: mongodb-fullstack
+    restart: unless-stopped
+    command: mongod --auth
+    networks:
+      - fullstack
+
+  backend:
+    build: 
+      context: ./back-end
+      dockerfile: Dockerfile
+    ports:
+      - 8089:8089
+    environment:
+      DB_HOST: mongodb
+      DB_USER: mahyargh
+      DB_PASSWORD: mahyargh
+      DB_NAME: comp3133_labtest1
+      DB_PORT: 27017
+    container_name: backend
+    restart: unless-stopped
+    networks:
+      - fullstack
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: 
+      context: ./front-end
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    container_name: frontend
+    restart: unless-stopped
+    networks:
+      - fullstack
+    depends_on:
+      - backend
+
+networks:
+  fullstack:
+    driver: bridge
