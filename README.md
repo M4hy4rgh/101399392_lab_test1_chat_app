@@ -2,12 +2,25 @@
 
 This is a chat application project developed for a lab test. The application allows users to communicate in real-time within designated chat rooms.
 
+## Images
+
+![login](front-end\src\components\assets\img\login.png)
+
+![sign-in](front-end\src\components\assets\img\sign-in.png)
+
+![dashboard](front-end\src\components\assets\img\dashboard.png)
+
+![creatGroup](front-end\src\components\assets\img\createGroup.png)
+
+![chat](front-end\src\components\assets\img\chat.png)
+
+
+
+
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- [Images](#Images)
 - [Features](#Features)
 
 ## Features
@@ -46,6 +59,8 @@ Instructions for installing the project.
 
 ```bash
 npm install
+# Back-end ---> npm run dev.
+# Front-end ---> yarn start or npm start
 ```
 
 ## Note
