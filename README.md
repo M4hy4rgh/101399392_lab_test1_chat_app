@@ -4,7 +4,7 @@ This is a chat application project developed for a lab test. The application all
 
 ## Images
 
-![login](front-end/rc/components/assets/img/login.png)
+![login](front-end/src/components/assets/img/login.png)
 
 ![sign-in](front-end/src/components/assets/img/sign-in.png)
 
